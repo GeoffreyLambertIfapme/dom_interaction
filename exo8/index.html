@@ -15,21 +15,43 @@
         <main class="container text-bg-light">
             <div class="input-group mb-3">
                 <input type="text" class="form-control" />
-                <button class="btn btn-info" type="button">Valider</button>
               </div>
-            <div>
+            <div id="message">
                 [message ici]
             </div>
         </main>
 
         <script>
-           // cree une fonction qui retourne la valeur de mon input
+            const input = document.querySelector('input');
 
-           // cree une fonction qui retourne si ma valeur est correct ou non
+            const message = document.getElementById('message');
 
-           // creer une fonction qui va ajouter le message
+            input.addEventListener('foucusout', () => {
+                const content = input.value;
 
-           // "binder" mon input au on change
+                console.log("contenu:", content);
+
+                
+                let resultMessage = "";
+
+                const taille = content.length;
+                if(taille === 0){
+                    resultMessage = "Merci d'encoder quelque chose!"
+                } else {
+                    console.log("taille:", taille);
+
+                    if(taille >= 3 && taille <= 10){
+                        console.log("ma taille est ok");
+                        resultMessage = "ma taille est ok";
+                    } else {
+                        console.log("ma taille est ko");
+                        resultMessage = "ma taille est ko -" + taille;
+                    }
+                }
+               
+
+                message.innerText = resultMessage;
+            });
         </script>
     </body>
 </html>

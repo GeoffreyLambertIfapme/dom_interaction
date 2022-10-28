@@ -14,24 +14,69 @@
         <main class="container text-bg-light">
             <div class="input-group mb-3">
                 <input type="text" class="form-control">
-                <span class="input-group-text">+</span>
+                <span class="input-group-text operator">+</span>
                 <input type="text" class="form-control">
                 <button class="btn btn-info" type="button">=</button>
             </div>
 
-            <div>
+            <div id="message">
                 [resultat ici]
             </div>
         </main>
 
         <script>
-            // creer une fonction qui somme 2 nombres
+           const inputs = document.querySelectorAll("input");
+           const op = document.querySelector('.operator');
 
-           // cree une fonction qui recupère la valeur de mes inputs et qui utilise lafonction pour les sommer et qui reoturne le resultat 
+            const message = document.getElementById("message");
 
-           // cree une fonction qui va ajouter mon resulat à la dom
+            const btn = document.querySelector('.btn');
 
-           // "binder" mon button au click
+            const getInputValues = (inputs) => {
+                const values = [];
+
+                inputs.forEach(input => {
+                    let inputValue = input.value.trim();
+
+                    if(inputValue !== ''){
+                        values.push(inputValue);
+                    }
+                });
+
+                return values;
+            }
+
+            const onlyNumberAr = (ar) => {
+                return ar.every(el => !isNaN(el));
+            }
+
+            const calculate = (operation, numbers) => {
+                let operator = operation.innerText;
+
+                let result = null;
+
+                if(numbers.length > 0 && onlyNumberAr(numbers)){
+                    result = numbers.reduce((prev, current) => eval(prev + operator + current));
+                }
+
+                return result;
+            }
+
+            btn.addEventListener('click', () => {
+                // recuperer les valeurs
+                const numbers = getInputValues(inputs);
+
+                // calcul le resultats
+                const result = calculate(op, numbers);
+
+                // afficher message d'erreur
+                let resultMessage = "L'opération est invalide !";
+
+                if(numbers.length === inputs.length && !isNaN(result) && isFinite(result) && result !== null){
+                    resultMessage = result;
+                }
+                message.innerText = resultMessage;
+            });
         </script>
     </body>
 </html>

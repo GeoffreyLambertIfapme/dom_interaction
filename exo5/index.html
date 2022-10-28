@@ -11,16 +11,24 @@
             Ajouter un element div toutes les secondes contenant son numéro
         </p>
 
-        <main class="container text-bg-light">
+        <main id="main" class="container text-bg-light">
             <div>1</div>
             <div>2</div>
         </main>
 
         <script>
-            // creer une function pour ajouter une div à mon contenu
-                // recuperer toutes les divs de mon contenu pour les compter
 
-           // trouver comment utiliser le setInterval
+            function ajoutElement() {
+                const main = document.getElementById("main");
+
+                const myDiv = document.createElement('div');
+                myDiv.textContent = main.children.length + 1;
+
+                
+                main.appendChild(myDiv);
+            }
+
+            setInterval(ajoutElement, 1000);
         </script>
     </body>
 </html>

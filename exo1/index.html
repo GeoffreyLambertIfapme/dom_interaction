@@ -12,11 +12,19 @@
         </p>
 
         <main class="container text-bg-light">
-            <div>changer moi en vert</div>
+            <div class="enVert">changer moi en vert</div>
+            <button class="cta">appliquer les changements</button>
         </main>
 
         <script>
-           
+            function changeColor() {
+                const maDiv = document.getElementsByClassName('enVert')[0];
+
+                maDiv.style.color ="green";
+            }
+            
+            const monButton = document.getElementsByClassName('cta')[0];
+            monButton.addEventListener('click', changeColor);
         </script>
     </body>
 </html>
